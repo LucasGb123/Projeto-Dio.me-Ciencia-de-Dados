@@ -52,7 +52,6 @@ class Conta:  #Class para a conta bancaria.
         self._historico = Historico()
 
     @classmethod  #Método para criar uma nova instancia de conta
-    # CORRIGIDO: O nome do parâmetro foi alterado de 'client' para 'cliente' para funcionar com a chamada em criar_conta()
     def nova_conta(cls, cliente, numero):
         return cls(numero, cliente)
     

@@ -42,9 +42,40 @@ create table payments(
 create table orders(
 		idOrders int auto_increment primary key,
         idOrdersClient int,
-        ordersStatus enum('Cancelado', 'Confirmado', 'Em processamento') not null,
+        ordersStatus enum('Cancelado', 'Confirmado', 'Em processamento') default 'Em processamento',
         orderDescription varchar(255),
         sendValue float default 10,
         paymentCash bool default false,
         constraint fk_orders_client foreign key (idOrderClient) references clients(idClient)
 );
+
+
+-- criar tabela estoque
+create table storage(
+idProdStrorage int auto_increment primary key,
+storageLocation varchar(255),
+quantity int default 0
+);
+-- criar tabela fornecedor
+create table supplier(
+	idSupplier int auto_increment primary key,
+    LegalName varchar(255) not null,
+    CNPJ char(15) not null,
+	quantity int default 0,
+    contact char(11) not null,
+    constraint unique_supplier unique (CNPJ)
+);
+
+-- criar tabela vendedor
+create table seller(
+	idSeller int auto_increment primary key,
+    LegalName varchar(255) not null,
+    AbstName varchar(255),
+    CNPJ char(15) not null,
+    CPF char(9),
+    location varchar(255),
+    contact char(11) not null,
+    constraint unique_cnpj_supplier unique (CNPJ),
+    constraint unique_cpf_seller unique (CPF)
+);
+

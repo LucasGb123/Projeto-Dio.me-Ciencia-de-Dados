@@ -79,3 +79,28 @@ create table seller(
     constraint unique_cpf_seller unique (CPF)
 );
 
+create table seller(
+	idPseller int,
+    idProduct int,
+    prodQuantity int default 1,
+    primary key (idPseller, idPproduct),
+    constraint fk_product_seller foreign key (idPeseller) references seller(idSeller),
+    constraint fk_product_product foreign key (idProduct) references product(idProduct)
+);
+
+create table productOrder(
+	idPOproduct int,
+    idPOorder int,
+    poQuantity int default 1,
+    poStatus enum('Disponível', 'Sem estoque') default 'Disponível',
+    primary key (idPOproduct, idPOorder),
+    constraint fk_product_seller foreign key (idPOproduct) references product(idProduct),
+    constraint fk_product_product foreign key (idPOorder) references orders(idOrder)
+);
+
+create table storageLocation(
+	idLproduct int,
+    idLstorage int,
+    location varchar(255) not null,
+    primary key (idLprodu
+);
